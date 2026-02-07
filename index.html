@@ -17,7 +17,7 @@ body{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 200px;
+  font-size: 100px;
 
   border-radius: 50%;
   cursor: pointer;
@@ -68,7 +68,7 @@ color: #111;
 /* ================= HERO ================= */
 .hero{
   position:relative;
-  min-height:70vh;
+min-height:70vh;
   padding:50px 70px;
   overflow:hidden;
 }
@@ -115,12 +115,18 @@ color: #111;
   position:relative; z-index:10;
 }
 .card:hover{background:#334155;transform:translateY(-3px)}
-
+.card {
+  position: relative;
+}
 /* Accordion details (image ALWAYS on top) */
 .detail{
   display:none; margin:8px 8px 0 8px; padding:18px;
   border:1px solid rgba(255,255,255,.15); border-radius:12px;
   background:rgba(255,255,255,.03); position:relative; z-index:15;
+}
+.detail {
+  padding: 8px 10px;
+  font-size: 13px;
 }
 .detail b{font-size:19px}
 .detail ul{margin-top:8px;padding-left:20px}
@@ -130,6 +136,22 @@ color: #111;
   margin-top:12px; border-radius:12px;
   position:relative; z-index:20;
 }
+.progress {
+  width: 50%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
 
 /* ================= HOBBIES GALLERY ================= */
 #gallery{
@@ -190,37 +212,163 @@ color: #111;
 <div class="section">
   <h2>🛠️ Skills</h2>
 
-  <div class="card" onclick="accordion(this)">📝 MS Word</div>
-  <div class="detail">
-    <b>📈 85%</b>
-    <ul><li>Formatting</li><li>CV & Letters</li><li>Tables</li></ul>
+  <div class="card" onclick="accordion(this)">📊 MS PowerPoint</div>
+<div class="detail">
+  <b>📈 75%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:75%"></div>
   </div>
+  <ul>
+    <li>Slide Design</li>
+    <li>Animations</li>
+    <li>Presentations</li>
+  </ul>
+</div>
 
-  <div class="card" onclick="accordion(this)">📊 MS Excel</div>
-  <div class="detail">
-    <b>📈 70%</b>
-    <ul><li>Data entry</li><li>Basic formulas</li></ul>
+<div class="card" onclick="accordion(this)">📝 MS Word</div>
+<div class="detail">
+  <b>📈 85%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:85%"></div>
   </div>
+  <ul>
+    <li>Formatting</li>
+    <li>CV & Letters</li>
+    <li>Tables</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">📉 MS Excel</div>
+<div class="detail">
+  <b>📈 50%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:50%"></div>
+  </div>
+  <ul>
+    <li>Formulas</li>
+    <li>Charts</li>
+    <li>Data Entry</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">🎨 Photoshop</div>
+<div class="detail">
+  <b>📈 45%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:45%"></div>
+  </div>
+  <ul>
+    <li>Photo Editing</li>
+    <li>Background Remove</li>
+    <li>Poster Design</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">💻 Coding</div>
+<div class="detail">
+  <b>📈 40%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:40%"></div>
+  </div>
+  <ul>
+    <li>Basic Logic</li>
+    <li>Simple Programs</li>
+    <li>Problem Solving</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">💡 Innovative</div>
+<div class="detail">
+  <b>📈 90%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:90%"></div>
+  </div>
+  <ul>
+    <li>Creative Thinking</li>
+    <li>New Ideas</li>
+    <li>Quick Learning</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">⌨️ Bengali Typing</div>
+<div class="detail">
+  <b>📈 80%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:90%"></div>
+  </div>
+  <ul>
+    <li>Fast Typing</li>
+    <li>Unicode/Bijoy</li>
+    <li>Accurate Writing</li>
+  </ul>
+</div>
+
 </div>
 
 <!-- EDUCATION (ACCORDION + PHOTO) -->
 <div class="section">
   <h2>🎓 Education</h2>
 
-  <div class="card" onclick="accordion(this)">Madhyamik</div>
+  <div class="card" onclick="accordion(this)">Madhyamik (10th)</div>
   <div class="detail">
-    <b>Gerua Pahari Labanyamayee High School</b>
-    <ul><li>Board: WBBSE</li><li>57%</li></ul>
+    <b>Gerua Pahari Abhayanmayee High School</b>
+    <div class="progress"><div class="progress-bar" style="width:55%"></div></div>
+    <ul>
+      <li>Board: WBBSE (2017)</li>
+      <li>55%</li>
+      <li>Bengali, English, History, Geography, Math, Life Sci, Physical Sci</li>
+    </ul>
     <img src="photos/edu_1.jpg" onerror="this.style.display='none'">
   </div>
 
-  <div class="card" onclick="accordion(this)">Higher Secondary</div>
+  <div class="card" onclick="accordion(this)">Higher Secondary (12th)</div>
   <div class="detail">
     <b>Dubrajpur S.S. Sarada Vidyapith</b>
-    <ul><li>Board: WBCHSE</li><li>65%</li></ul>
+    <div class="progress"><div class="progress-bar" style="width:65%"></div></div>
+    <ul>
+      <li>Board: WBCHSE (2019)</li>
+      <li>65%</li>
+      <li>Bengali, English, Geography, Sanskrit, Computer Application</li>
+    </ul>
     <img src="photos/edu_2.jpg" onerror="this.style.display='none'">
   </div>
-</div>
+
+  <div class="card" onclick="accordion(this)">D.El.Ed</div>
+  <div class="detail">
+    <b>Bakeswar Teacher Training Institution</b>
+    <div class="progress"><div class="progress-bar" style="width:68.21%"></div></div>
+    <ul>
+      <li>Board: WBBPE</li>
+      <li>2019–2021</li>
+      <li>68.21%</li>
+    </ul>
+    <img src="photos/edu_3.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Graduation (B.A)</div>
+  <div class="detail">
+    <b>Burdwan Raj College</b>
+    <div class="progress"><div class="progress-bar" style="width:74%"></div></div>
+    <ul>
+      <li>University: University of Burdwan</li>
+      <li>2021–2024</li>
+      <li>CGPA: 7.39</li>
+      <li>Bengali, Geography</li>
+    </ul>
+    <img src="photos/edu_4.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Technical Course (ITI)</div>
+  <div class="detail">
+    <b>Khoyrabol Govt. ITI</b>
+    <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+    <ul>
+      <li>NCVT – 2020</li>
+      <li>85%</li>
+      <li>Computer & Employability Skill</li>
+    </ul>
+    <img src="photos/edu_5.jpg" onerror="this.style.display='none'">
+  </div>
 
 <!-- EXPERIENCE (ACCORDION) -->
 <div class="section">
@@ -245,7 +393,7 @@ color: #111;
 
   <div class="card" onclick="showGallery('photo')">📸 Photography</div>
   <div class="card" onclick="showGallery('book')">📚 Reading Books</div>
-  <a class="card" href="https://github.com/yourusername" target="_blank">💻 Coding</a>
+  <a class="card" href="https://kingkingng2222-prog.github.io/MAKE-YOUR-OWN-CV/" target="_blank">💻 Coding</a>
 
   <div id="gallery"></div>
 </div>
@@ -417,13 +565,13 @@ else if(q.includes("hobby") || q.includes("interest"))
 });
 
 /* ===== ACCORDION (ONE BY ONE) ===== */
-function accordion(card){
-  const allDetails=document.querySelectorAll(".detail");
-  const detail=card.nextElementSibling;
-  allDetails.forEach(d=>{ if(d!==detail) d.style.display="none"; });
-  detail.style.display = (detail.style.display==="block") ? "none" : "block";
+function accordion(el) {
+  document.querySelectorAll('.detail').forEach(d => {
+    if (d !== el.nextElementSibling) d.style.display = "none";
+  });
+  let next = el.nextElementSibling;
+  next.style.display = next.style.display === "block" ? "none" : "block";
 }
-
 /* ===== HOBBIES GALLERY (LOAD ONLY EXISTING IMAGES) ===== */
 function showGallery(type){
   const g=document.getElementById("gallery");
