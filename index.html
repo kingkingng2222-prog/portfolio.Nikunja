@@ -17,10 +17,8 @@ body{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 22px;
-  background: #000;
-  color: #fff;
-  padding: 14px;
+  font-size: 200px;
+
   border-radius: 50%;
   cursor: pointer;
   z-index: 999;
@@ -44,7 +42,13 @@ body{
   padding: 8px;
   text-align: center;
 }
-
+#bot-close{
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
 #bot-body{
   height: 220px;
 font-weight: 600;
@@ -161,16 +165,17 @@ color: #111;
   <h1>Nikunja <span>Ghosh</span></h1>
   <p>🎓 Graduate | 🖥️ Technical Support | 💻 Computer Skilled</p>
   <a class="btn" href="resume.pdf" download>🧾 Download Resume</a>
-<!-- CHATBOT -->
-<!-- Chatbot Icon -->
-<div id="bot-icon">💬</div>
 
+<!-- Chatbot Icon -->
+<div id="bot-icon">🤖</div>
 <!-- Chatbot Box -->
 <div id="bot-box">
-  <div id="bot-header">About Me Bot</div>
+  <div id="bot-header">About Nikunja Bot <span id="bot-close">✖</span></div>
   <div id="bot-body"></div>
-  <input type="text" id="bot-input" placeholder="Ask about me..." />
+  <input type="text" id="bot-input" placeholder="Ask about Nikunja..." />
+ <button id="bot-send">➤</button>
 </div>
+
 
   <!-- Photo -->
   <img src="profile.jpg" id="photo" alt="Profile">
@@ -268,7 +273,22 @@ const icon = document.getElementById("bot-icon");
 const box = document.getElementById("bot-box");
 const body = document.getElementById("bot-body");
 const input = document.getElementById("bot-input");
+const closeBtn = document.getElementById("bot-close");
+const sendBtn  = document.getElementById("bot-send");
 
+closeBtn.onclick = () => {
+  box.style.display = "none";
+};
+
+sendBtn.onclick = () => {
+  sendMessage();
+};
+
+input.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    sendMessage();
+  }
+});
 icon.onclick = () => {
   box.style.display = box.style.display === "none" ? "block" : "none";
 };
