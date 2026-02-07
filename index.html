@@ -28,7 +28,7 @@ body{
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 280px;
+  width: 500px;
   background: #fff;
   border: 1px solid #ccc;
   display: none;
@@ -203,7 +203,10 @@ min-height:70vh;
   <img src="profile.jpg" id="photo" alt="Profile">
 
   <!-- Golden road (background) -->
-  
+  <svg class="gold-road" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M 40 150 C 240 30, 360 270, 520 150 S 820 30, 1160 150"/>
+  </svg>
+</div>
 
 <!-- SKILLS (ACCORDION) -->
 <div class="section">
@@ -339,7 +342,7 @@ min-height:70vh;
       <li>2019–2021</li>
       <li>68.21%</li>
     </ul>
-    <img src="photos/edu_4.jpg" onerror="this.style.display='none'">
+    <img src="photos/edu_3.jpg" onerror="this.style.display='none'">
   </div>
 
   <div class="card" onclick="accordion(this)">Graduation (B.A)</div>
@@ -352,7 +355,7 @@ min-height:70vh;
       <li>CGPA: 7.39</li>
       <li>Bengali, Geography</li>
     </ul>
-    <img src="photos/edu_5.jpg" onerror="this.style.display='none'">
+    <img src="photos/edu_4.jpg" onerror="this.style.display='none'">
   </div>
 
   <div class="card" onclick="accordion(this)">Technical Course (ITI)</div>
@@ -364,7 +367,7 @@ min-height:70vh;
       <li>85%</li>
       <li>Computer & Employability Skill</li>
     </ul>
-    <img src="photos/edu_3.jpg" onerror="this.style.display='none'">
+    <img src="photos/edu_5.jpg" onerror="this.style.display='none'">
   </div>
 
 <!-- EXPERIENCE (ACCORDION) -->
@@ -447,7 +450,7 @@ input.addEventListener("keypress", function(e){
 
     let a = "I can only answer questions related to my profile.";
 
- if(q.includes("yourself") || q.includes("about you"))
+ if(q.includes("yourself") || q.includes("about you")|| q.includes("about yourself"))
   a = "I am Nikunja Ghosh from Birbhum, West Bengal. I am a graduate with a Bachelor’s degree in Arts and strong computer and technical skills. I have experience in examination management, technical support, and administrative work. I am a quick learner, hardworking, and always eager to improve my skills.";
 
 else if(
@@ -464,7 +467,7 @@ else if(q.includes("from") || q.includes("location"))
 else if(q.includes("Describe YOURSELF"))
   a = "I am a disciplined and responsible person with a strong interest in technology and learning. I can handle both technical and administrative tasks efficiently.";
 
-else if(q.includes("education") || q.includes("qualification"))
+else if(q.includes("education") || q.includes("qualification")|| q.includes("about your education")|| q.includes("about your qualification"))
   a = "I have completed B.A, D.El.Ed, ITI in Computer, and a One-Year Computer Diploma.";
 
 else if(q.includes("college"))
@@ -486,8 +489,8 @@ else if(
   q.includes("job experience") || q.includes("work experience") ||  q.includes("experience"))
   a = "I have experience working with Exito The Success (under TCS iON) and Udan Pathshala.";
 
-else if(q.includes("DESCRIBE YOUR JOB")||  q.includes("DESCRIBE YOUR JOB experience")||  q.includes("DESCRIBE YOUR WORK experience"))
-  a = "I have experience working with Exito The Success (under TCS iON)as an Invigilator during examinations and Udan Pathshala eam Leader and Head of Technical Support..";
+else if(q.includes("DESCRIBE YOUR JOB")||  q.includes("DESCRIBE YOUR JOB experience")||  q.includes("YOUR JOB experience")||  q.includes("DESCRIBE YOUR WORK experience"))
+  a = "I have experience working with Exito The Success (under TCS iON)as an Invigilator during examinations and Udan Pathshala eam Leader and Head of Technical Support.";
 
 else if(q.includes("exito"))
   a = "At Exito The Success, I worked as an Invigilator during examinations.";
@@ -555,7 +558,7 @@ else if(
 else if(q.includes("hobby") || q.includes("interest"))
   a = "My hobbies include photography, music, travelling, and reading.";
 
-    body.innerHTML += `<div><b>Bot:</b> ${a}</div>`;
+    body.innerHTML += `<div><b>Nikunja:</b> ${a}</div>`;
     body.scrollTop = body.scrollHeight;
     input.value = "";
   }
