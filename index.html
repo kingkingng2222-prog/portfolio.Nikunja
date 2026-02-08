@@ -10,6 +10,7 @@ body{
   margin:0;
   font-family: Arial, sans-serif;
   color:#e5e7eb;
+	transition: background 0.05s linear;
   background: linear-gradient(180deg,#020617,#0b1220);
 }
 /* ================= CHATBOT================= */
@@ -590,6 +591,19 @@ function showGallery(type){
     img.onerror=()=>{}; // stop when missing
   })();
 }
+	document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth) * 100;
+  const y = (e.clientY / window.innerHeight) * 100;
+
+  document.body.style.background = `
+    radial-gradient(
+      circle at ${x}% ${y}%,
+      rgba(0, 255, 200, 0.35),
+      #0f0f0f 45%
+    )
+  `;
+});
+
 </script>
 
 </body>
