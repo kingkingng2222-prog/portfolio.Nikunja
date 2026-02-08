@@ -13,6 +13,18 @@ body{
 	transition: background 0.05s linear;
   background: linear-gradient(180deg,#020617,#0b1220);
 }
+#mouse-glow{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(#99ccff 0%, #ffccff 50%,
+    circle 100px at 50% 50%,
+transparent 200%,
+    rgba(0, 255, 200, 0.6),
+    rgba(0,0,0,0) 70%
+  );
+}
 /* ================= CHATBOT================= */
 #bot-icon{
   position: fixed;
@@ -127,7 +139,7 @@ min-height:70vh;
 }
 .detail {
   padding: 8px 10px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .detail b{font-size:19px}
 .detail ul{margin-top:8px;padding-left:20px}
@@ -182,7 +194,7 @@ min-height:70vh;
 </head>
 
 <body>
-
+<div id="mouse-glow"></div>
 <!-- HERO -->
 <div class="hero">
   <h1>Nikunja <span>Ghosh</span></h1>
@@ -591,19 +603,20 @@ function showGallery(type){
     img.onerror=()=>{}; // stop when missing
   })();
 }
-	document.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth) * 100;
-  const y = (e.clientY / window.innerHeight) * 100;
+	
+const glow = document.getElementById("mouse-glow");
 
-  document.body.style.background = `
+document.addEventListener("mousemove", (e) => {
+  glow.style.background = `
     radial-gradient(
-      circle at ${x}% ${y}%,
-      rgba(0, 255, 200, 0.35),
-      #0f0f0f 45%
+      circle 100px at ${e.clientX}px ${e.clientY}px,
+#99ccff 0%, #ffccff 50%,
+  transparent 200%,
+      rgba(0, 255, 200, 0.6),
+      rgba(0,0,0,0) 20%
     )
   `;
 });
-
 </script>
 
 </body>
