@@ -2,7 +2,603 @@
 <head>
 <meta charset="UTF-8">
 <title>Nikunja Ghosh | Portfolio</title>
+<meta name="viewport" content="width=device-width, initia<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nikunja Ghosh | Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color:#e5e7eb;
+  background: linear-gradient(180deg,#020617,#0b1220);
+}
+/* ================= CHATBOT================= */
+#bot-icon{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 100px;
+
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#bot-box{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 500px;
+  background: #fff;
+  border: 1px solid #ccc;
+  display: none;
+  z-index: 999;
+  font-family: Arial;
+}
+
+#bot-header{
+  background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%);
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+#bot-close{
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#bot-body{
+  height: 220px;
+font-weight: 600;
+color: #111; 
+  padding: 8px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#bot-input{
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+min-height:70vh;
+  padding:50px 70px;
+  overflow:hidden;
+}
+.hero h1{font-size:48px;margin:0}
+.hero h1 span{color:#3b82f6}
+.hero p{font-size:18px;color:#cbd5f5;margin:8px 0 14px}
+.hero .btn{
+  display:inline-block;margin-top:10px;padding:10px 22px;border-radius:22px;
+  background:#3b82f6;color:#fff;text-decoration:none
+}
+
+/* Draggable photo (TOP layer) */
+#photo{
+  position:absolute; top:120px; right:80px; width:200px;
+  border-radius:16px; cursor:grab;
+  box-shadow:0 0 25px rgba(59,130,246,.4);
+  z-index:20;
+}
+
+/* ========== GOLDEN ROAD (BACKGROUND) ========== */
+.gold-road{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+}
+.gold-road path{
+  fill:none;
+  stroke:gold;
+  stroke-linecap:round;
+  /* road feel: start thick, flow, fade */
+  stroke-width:8;
+  filter: drop-shadow(0 0 10px gold);
+  stroke-dasharray: 60 200;
+  animation: roadMove 6s linear infinite;
+}
+@keyframes roadMove{ to{ stroke-dashoffset:-260; } }
+
+/* ================= SECTIONS ================= */
+.section{padding:50px 70px}
+.section h2{font-size:30px;margin-bottom:16px}
+
+/* Cards */
+.card{
+  display:inline-block; background:#1e293b; padding:14px 22px; margin:8px;
+  border-radius:12px; cursor:pointer; font-size:17px; transition:.25s;
+  position:relative; z-index:10;
+}
+.card:hover{background:#334155;transform:translateY(-3px)}
+.card {
+  position: relative;
+}
+/* Accordion details (image ALWAYS on top) */
+.detail{
+  display:none; margin:8px 8px 0 8px; padding:18px;
+  border:1px solid rgba(255,255,255,.15); border-radius:12px;
+  background:rgba(255,255,255,.03); position:relative; z-index:15;
+}
+.detail {
+  padding: 8px 10px;
+  font-size: 13px;
+}
+.detail b{font-size:19px}
+.detail ul{margin-top:8px;padding-left:20px}
+.detail li{margin:5px 0}
+.detail img{
+  display:block; width:220px; max-width:100%;
+  margin-top:12px; border-radius:12px;
+  position:relative; z-index:20;
+}
+.progress {
+  width: 50%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+
+/* ================= HOBBIES GALLERY ================= */
+#gallery{
+  display:none; margin-top:16px; flex-wrap:wrap; gap:16px;
+  position:relative; z-index:15;
+}
+#gallery img{
+  width:140px;height:140px;object-fit:cover;border-radius:14px;
+  border:1px solid rgba(255,215,0,.6);
+  box-shadow:0 0 12px rgba(255,215,0,.25);
+  transition:.3s;
+}
+#gallery img:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 20px rgba(255,215,0,.6);
+}
+
+/* ================= CONTACT ================= */
+.contact{
+  background:#020617; padding:35px 70px; text-align:center;
+}
+.contact a{
+  display:block; font-size:22px; color:#3b82f6;
+  text-decoration:none; margin:6px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Nikunja <span>Ghosh</span></h1>
+  <p>🎓 Graduate | 🖥️ Technical Support | 💻 Computer Skilled</p>
+  <a class="btn" href="resume.pdf" download>🧾 Download Resume</a>
+
+<!-- Chatbot Icon -->
+<div id="bot-icon">🤖</div>
+<!-- Chatbot Box -->
+<div id="bot-box">
+  <div id="bot-header">About Nikunja Bot <span id="bot-close">✖</span></div>
+  <div id="bot-body"></div>
+  <input type="text" id="bot-input" placeholder="Ask about Nikunja..." />
+ <button id="bot-send">➤</button>
+</div>
+
+
+  <!-- Photo -->
+  <img src="profile.jpg" id="photo" alt="Profile">
+
+ 
+
+<!-- SKILLS (ACCORDION) -->
+<div class="section">
+  <h2>🛠️ Skills</h2>
+
+  <div class="card" onclick="accordion(this)">📊 MS PowerPoint</div>
+<div class="detail">
+  <b>📈 75%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:75%"></div>
+  </div>
+  <ul>
+    <li>Slide Design</li>
+    <li>Animations</li>
+    <li>Presentations</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">📝 MS Word</div>
+<div class="detail">
+  <b>📈 85%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:85%"></div>
+  </div>
+  <ul>
+    <li>Formatting</li>
+    <li>CV & Letters</li>
+    <li>Tables</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">📉 MS Excel</div>
+<div class="detail">
+  <b>📈 50%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:50%"></div>
+  </div>
+  <ul>
+    <li>Formulas</li>
+    <li>Charts</li>
+    <li>Data Entry</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">🎨 Photoshop</div>
+<div class="detail">
+  <b>📈 45%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:45%"></div>
+  </div>
+  <ul>
+    <li>Photo Editing</li>
+    <li>Background Remove</li>
+    <li>Poster Design</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">💻 Coding</div>
+<div class="detail">
+  <b>📈 40%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:40%"></div>
+  </div>
+  <ul>
+    <li>Basic Logic</li>
+    <li>Simple Programs</li>
+    <li>Problem Solving</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">💡 Innovative</div>
+<div class="detail">
+  <b>📈 90%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:90%"></div>
+  </div>
+  <ul>
+    <li>Creative Thinking</li>
+    <li>New Ideas</li>
+    <li>Quick Learning</li>
+  </ul>
+</div>
+
+<div class="card" onclick="accordion(this)">⌨️ Bengali Typing</div>
+<div class="detail">
+  <b>📈 80%</b>
+<div class="progress">
+    <div class="progress-bar" style="width:90%"></div>
+  </div>
+  <ul>
+    <li>Fast Typing</li>
+    <li>Unicode/Bijoy</li>
+    <li>Accurate Writing</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- EDUCATION (ACCORDION + PHOTO) -->
+<div class="section">
+  <h2>🎓 Education</h2>
+
+  <div class="card" onclick="accordion(this)">Madhyamik (10th)</div>
+  <div class="detail">
+    <b>Geruapahari Labanyamayee High Secondary School</b>
+    <div class="progress"><div class="progress-bar" style="width:55%"></div></div>
+    <ul>
+      <li>Board:West Bengal Board of Secondary Education (WBBSE) (2017)</li>
+      <li>55%</li>
+      <li>Bengali, English, History, Geography, Mathematics, Life Science, Physical Science</li>
+    </ul>
+    <img src="photos/edu_1.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Higher Secondary (12th)</div>
+  <div class="detail">
+    <b>Dubrajpur sree Sree Sarada Vidyapith</b>
+    <div class="progress"><div class="progress-bar" style="width:65%"></div></div>
+    <ul>
+      <li>Board: West Bengal Council of Higher Secondary Education (WBCHSE) (2019)</li>
+      <li>65%</li>
+      <li>Bengali, English, Geography, Sanskrit, Computer Application</li>
+    </ul>
+    <img src="photos/edu_2.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Diploma in Elementary Education (D.El.Ed)</div>
+  <div class="detail">
+    <b>Bakeswar Teacher Training Institution</b>
+    <div class="progress"><div class="progress-bar" style="width:88.21%"></div></div>
+    <ul>
+      <li>Board:West Bengal Board of Primary Education (WBBPE)</li>
+      <li>2019–2021</li>
+      <li>88.21%</li>
+    </ul>
+    <img src="photos/edu_3.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Graduation (B.A)</div>
+  <div class="detail">
+    <b>Burdwan Raj College</b>
+    <div class="progress"><div class="progress-bar" style="width:74%"></div></div>
+    <ul>
+      <li>University of Burdwan</li>
+      <li>2021–2024</li>
+      <li>CGPA: 7.39</li>
+      <li>Bengali, Geography</li>
+    </ul>
+    <img src="photos/edu_4.jpg" onerror="this.style.display='none'">
+  </div>
+
+  <div class="card" onclick="accordion(this)">Technical Course (ITI)</div>
+  <div class="detail">
+    <b>Khoyrabol Govt. ITI</b>
+    <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+    <ul>
+      <li>NCVT – 2020</li>
+      <li>85%</li>
+      <li>Computer & Employability Skill</li>
+    </ul>
+    <img src="photos/edu_5.jpg" onerror="this.style.display='none'">
+  </div>
+
+<!-- EXPERIENCE (ACCORDION) -->
+<div class="section">
+  <h2>💼 Experience</h2>
+
+  <div class="card" onclick="accordion(this)">Exito – TCS iON</div>
+  <div class="detail">
+    <b>Invigilator</b>
+    <ul><li>Exam duty</li><li>Discipline</li></ul>
+  </div>
+
+  <div class="card" onclick="accordion(this)">Udan Pathshala</div>
+  <div class="detail">
+    <b>Team Leader / Technical Support</b>
+    <ul><li>PPT</li><li>Admin panel</li></ul>
+  </div>
+
+
+</div>
+
+<!-- HOBBIES -->
+<div class="section">
+  <h2>🎯 Hobbies</h2>
+
+  <div class="card" onclick="showGallery('photo')">📸 Photography</div>
+  <div class="card" onclick="showGallery('book')">📚 Reading Books</div>
+ <div class="card" onclick="accordion(this)">💻 Coding</div>
+  <div class="detail">
+    <b>WEBSIDES </b>
+    <ul><li> <a href="https://kingkingng2222-prog.github.io/MAKE-YOUR-OWN-CV/" target="_blank">MAKE YOUR CV</a></li></ul>
+  </div>
+  <div id="gallery"></div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+  <a href="tel:+917029902199">📞 +91 70299 02199</a>
+  <a href="mailto:nikunja2222@gmail.com">📧 nikunja2222@gmail.com</a>
+</div>
+
+<script>
+/* ===== DRAG PHOTO ===== */
+const photo=document.getElementById("photo");
+let drag=false;
+photo.addEventListener("mousedown",()=>drag=true);
+document.addEventListener("mouseup",()=>drag=false);
+document.addEventListener("mousemove",(e)=>{
+  if(drag){
+    photo.style.left=(e.pageX-100)+"px";
+    photo.style.top=(e.pageY-100)+"px";
+  }
+});
+/* ===== CHATBOT===== */
+const icon = document.getElementById("bot-icon");
+const box = document.getElementById("bot-box");
+const body = document.getElementById("bot-body");
+const input = document.getElementById("bot-input");
+const closeBtn = document.getElementById("bot-close");
+const sendBtn  = document.getElementById("bot-send");
+
+closeBtn.onclick = () => {
+  box.style.display = "none";
+};
+
+sendBtn.onclick = () => {
+  sendMessage();
+};
+
+input.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    sendMessage();
+  }
+});
+icon.onclick = () => {
+  box.style.display = box.style.display === "none" ? "block" : "none";
+};
+
+input.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    let q = input.value.toLowerCase();
+    if(q === "") return;
+
+    body.innerHTML += `<div><b>You:</b> ${input.value}</div>`;
+
+    let a = "I can only answer questions related to my profile.";
+
+ if(q.includes("yourself") || q.includes("about you")|| q.includes("about yourself"))
+  a = "I am Nikunja Ghosh from Birbhum, West Bengal. I am a graduate with a Bachelor’s degree in Arts and strong computer and technical skills. I have experience in examination management, technical support, and administrative work. I am a quick learner, hardworking, and always eager to improve my skills.";
+
+else if(
+  q === "hi" || q === "hello" || q === "hey" || 
+  q.includes("hi ") || q.includes("hello") || q.includes("hey"))
+  a = "Hello! 👋 I’m Nikunja’s profile chatbot. You can ask me anything about his education, skills, experience, or interview-related questions.";
+
+else if(q.includes("name"))
+  a = "My full name is Nikunja Ghosh.";
+
+else if(q.includes("from") || q.includes("location"))
+  a = "I am from Birbhum district, West Bengal, India.";
+	
+else if(q.includes("Describe YOURSELF"))
+  a = "I am a disciplined and responsible person with a strong interest in technology and learning. I can handle both technical and administrative tasks efficiently.";
+
+else if(q.includes("education") || q.includes("qualification")|| q.includes("about your education")|| q.includes("about your qualification"))
+  a = "I have completed B.A, D.El.Ed, ITI in Computer, and a One-Year Computer Diploma.";
+
+else if(q.includes("college"))
+  a = "I studied at Burdwan Raj College under The University of Burdwan.";
+
+else if(q.includes("subject") || q.includes("stream"))
+  a = "My graduation subjects were Bengali and Geography.";
+
+else if(q.includes("skill"))
+  a = "My skills include MS Word, MS Excel, MS PowerPoint, Photoshop, basic coding, and Bengali typing.";
+
+else if(q.includes("strong") || q.includes("strength"))
+  a = "My strengths are technical skills, quick learning ability, and dedication.";
+
+else if(q.includes("software") || q.includes("tools"))
+  a = "I regularly use MS Office tools, Photoshop, and basic coding tools.";
+
+else if(
+  q.includes("job experience") || q.includes("work experience") ||  q.includes("experience"))
+  a = "I have experience working with Exito The Success (under TCS iON) and Udan Pathshala.";
+
+else if(q.includes("describe your job")||  q.includes("describe your job experience")||  q.includes("your job experience")||  q.includes("describe your work experience"))
+  a = "I have experience working with Exito The Success (under TCS iON)as an Invigilator during examinations and Udan Pathshala eam Leader and Head of Technical Support.";
+
+else if(q.includes("exito"))
+  a = "At Exito The Success, I worked as an Invigilator during examinations.";
+
+else if(q.includes("udan"))
+  a = "At Udan Pathshala, I worked as a Team Leader and Head of Technical Support.";
+
+else if(q.includes("project") || q.includes("work"))
+  a = "I have worked on administrative, technical support, PPT preparation, and website-related tasks.";
+
+else if(q.includes("challenge"))
+  a = "Handling multiple responsibilities was challenging, but it helped me grow professionally.";
+
+else if(q.includes("fresher"))
+  a = "I continuously improve my skills through practice and learning new technologies.";
+
+else if(q.includes("internship") || q.includes("training"))
+  a = "I have professional training experience under TCS iON and education institutions.";
+
+else if(q.includes("learned"))
+  a = "I learned teamwork, responsibility, technical handling, and time management.";
+
+else if(q.includes("strength"))
+  a = "My strengths are honesty, technical knowledge, and problem-solving ability.";
+
+else if(q.includes("weakness"))
+  a = "Sometimes I take extra time to ensure work is done perfectly.";
+
+else if(q.includes("improve"))
+  a = "I am improving by balancing speed and accuracy.";
+
+else if(q.includes("goal") || q.includes("aim"))
+  a = "My career goal is to build a stable career in a technical or administrative role.";
+
+else if(q.includes("future") || q.includes("5 years"))
+  a = "In the next few years, I see myself in a responsible position with strong professional skills.";
+
+else if(q.includes("choose") || q.includes("field"))
+  a = "I chose this field because I enjoy working with computers and solving problems.";
+
+else if(q.includes("motivate"))
+  a = "Learning new skills and self-improvement motivate me.";
+
+else if(q.includes("hire"))
+  a = "You should hire me because I am hardworking, reliable, and technically skilled.";
+
+else if(q.includes("different"))
+  a = "My ability to learn quickly and handle multiple roles makes me different.";
+
+else if(q.includes("pressure") || q.includes("failure"))
+  a = "I stay calm, analyze the situation, and work step by step to solve problems.";
+
+else if(q.includes("learn new") || q.includes("technology"))
+  a = "Yes, I am always eager to learn new technologies.";
+
+else if(q.includes("relocation") || q.includes("remote"))
+  a = "Yes, I am open to relocation and remote work.";
+
+else if(q.includes("contact") || q.includes("email"))
+  a = "You can contact me via email at nikunja2222@gmail.com.";
+
+else if(
+  q.includes("job type") || q.includes("work type") || q.includes("work full time") || q.includes("work part time") ||q.includes("remote"))
+  a = "I am open to full-time, part-time, and remote opportunities.";
+else if(q.includes("hobby") || q.includes("interest"))
+  a = "My hobbies include photography, music, travelling, and reading.";
+else if(q.includes("languages"))
+  a = "I know Bengali (reading, writing, and speaking), Hindi (reading and speaking), and English (reading and writing).";
+else if(q.includes("coding languages"))
+  a = "I know I know HTML and CSS, and I have basic knowledge of Java.";
+
+    body.innerHTML += `<div><b>Nikunja:</b> ${a}</div>`;
+    body.scrollTop = body.scrollHeight;
+    input.value = "";
+  }
+});
+
+/* ===== ACCORDION (ONE BY ONE) ===== */
+function accordion(el) {
+  document.querySelectorAll('.detail').forEach(d => {
+    if (d !== el.nextElementSibling) d.style.display = "none";
+  });
+  let next = el.nextElementSibling;
+  next.style.display = next.style.display === "block" ? "none" : "block";
+}
+/* ===== HOBBIES GALLERY (LOAD ONLY EXISTING IMAGES) ===== */
+function showGallery(type){
+  const g=document.getElementById("gallery");
+  g.style.display="flex";
+  g.innerHTML="";
+  let i=1;
+  (function load(){
+    const img=new Image();
+    img.src=`photos/hobby_${type}_${i}.JPG`;
+    img.onload=()=>{ g.appendChild(img); i++; load(); };
+    img.onerror=()=>{}; // stop when missing
+  })();
+}
+</script>
+
+</body>
+</html>
+l-scale=1.0">
 
 <style>
 *{box-sizing:border-box}
