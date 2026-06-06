@@ -87,7 +87,7 @@ nav{
   display:flex;align-items:center;
   padding:120px 60px 80px;
   position:relative;
-  overflow:hidden;
+  overflow:clip;
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -118,7 +118,7 @@ nav{
 }
 .hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
+ 
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(42px,6vw,78px);
@@ -163,19 +163,22 @@ nav{
   transition:all .2s;
 }
 .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
-
+ 
 .hero-photo-wrap{
-  position:relative;z-index:2;
+  position:sticky;
+  top:100px;
+  z-index:2;
   flex-shrink:0;
-  width:300px;height:360px;
+  display:flex;align-items:center;justify-content:center;
+  width:320px;height:320px;
+  align-self:flex-start;
 }
-
 .hero-photo-frame{
   width:260px;height:260px;
   border-radius:50%;
   background:var(--card);
   overflow:hidden;
-  position:fixed;
+  position:relative;
   cursor:grab;
   user-select:none;
   box-shadow:
@@ -187,30 +190,46 @@ nav{
     0 0 100px rgba(212,168,67,0.12);
   animation:ringPulse 3s ease-in-out infinite;
 }
+@keyframes ringPulse{
+  0%,100%{box-shadow:0 0 0 4px var(--navy),0 0 0 7px var(--gold),0 0 0 11px var(--navy),0 0 0 13px rgba(212,168,67,0.3),0 0 50px rgba(212,168,67,0.3),0 0 100px rgba(212,168,67,0.12)}
+  50%{box-shadow:0 0 0 4px var(--navy),0 0 0 7px var(--gold2),0 0 0 11px var(--navy),0 0 0 13px rgba(212,168,67,0.5),0 0 70px rgba(212,168,67,0.45),0 0 120px rgba(212,168,67,0.2)}
+}
 .hero-photo-frame:active{cursor:grabbing}
 .hero-photo-frame img{
   width:100%;height:100%;
   object-fit:cover;
+  object-position:top;
   display:block;
-  transition:.3s;
+  transition:.4s;
 }
-.hero-photo-frame:hover img{transform:scale(1.04)}
+.hero-photo-frame:hover img{transform:scale(1.07)}
 .photo-deco{
   position:absolute;
-  top:-20px;right:-20px;
-  width:120px;height:120px;
-  border:1px solid var(--border);
+  inset:-22px;
+  border:1px dashed rgba(212,168,67,0.35);
   border-radius:50%;
   pointer-events:none;
+  animation:rotateDeco 18s linear infinite;
+}
+.photo-deco::before{
+  content:'';
+  position:absolute;
+  width:10px;height:10px;
+  background:var(--gold);
+  border-radius:50%;
+  top:50%;left:-5px;
+  transform:translateY(-50%);
+  box-shadow:0 0 10px var(--gold);
 }
 .photo-deco2{
   position:absolute;
-  bottom:-20px;left:-20px;
-  width:80px;height:80px;
-  border:1px solid var(--border2);
+  inset:-40px;
+  border:1px dashed rgba(79,168,232,0.2);
   border-radius:50%;
   pointer-events:none;
+  animation:rotateDeco 28s linear infinite reverse;
 }
+@keyframes rotateDeco{to{transform:rotate(360deg)}}
 
 /* ── STATS BAR ── */
 .stats-bar{
@@ -737,16 +756,33 @@ nav{
 
 <script>
 /* ── CURSOR GLOW ── */
-/* ===== DRAG PHOTO ===== */
-const photo=document.getElementById("photo");
-let drag=false;
-photo.addEventListener("mousedown",()=>drag=true);
-document.addEventListener("mouseup",()=>drag=false);
-document.addEventListener("mousemove",(e)=>{
-  if(drag){
-    photo.style.left=(e.pageX-100)+"px";
-    photo.style.top=(e.pageY-100)+"px";
-  }
+const glow=document.getElementById('glow');
+document.addEventListener('mousemove',e=>{
+  glow.style.left=e.clientX+'px';
+  glow.style.top=e.clientY+'px';
+});
+ 
+/* ── DRAG PHOTO ── */
+const photo=document.getElementById('photo');
+let dragging=false,ox=0,oy=0;
+ 
+photo.addEventListener('mousedown',e=>{
+  dragging=true;
+  const r=photo.getBoundingClientRect();
+  ox=e.clientX-r.left;
+  oy=e.clientY-r.top;
+  photo.style.cursor='grabbing';
+  e.preventDefault();
+});
+document.addEventListener('mouseup',()=>{
+  if(dragging){ dragging=false; photo.style.cursor='grab'; }
+});
+document.addEventListener('mousemove',e=>{
+  if(!dragging)return;
+  /* drag করলে sticky বন্ধ, সাধারণ অবস্থায় sticky চলে */
+  photo.style.position='relative';
+  photo.style.left=(e.clientX-ox - photo.parentElement.getBoundingClientRect().left)+'px';
+  photo.style.top=(e.clientY-oy - photo.parentElement.getBoundingClientRect().top)+'px';
 });
 /* ── SKILLS DATA ── */
 const skills=[
