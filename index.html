@@ -230,7 +230,108 @@ nav{
   animation:rotateDeco 28s linear infinite reverse;
 }
 @keyframes rotateDeco{to{transform:rotate(360deg)}}
-
+/* ── GITA CARD ── */
+.gita-card{
+  flex-shrink:0;
+  width:500px;
+left:300px;right:0;
+  border:1px solid var(--gold);
+  border-radius:12px;
+  padding:28px 24px 0 24px;
+  background:rgba(10,18,35,0.85);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.gita-lotus{
+  font-size:28px;
+  margin-bottom:10px;
+}
+.gita-sanskrit{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  color:var(--gold);
+  line-height:1.5;
+  margin-bottom:6px;
+  font-weight:1000;
+}
+.gita-roman{
+  font-size:20px;
+  color:var(--muted);
+  font-style:italic;
+  margin-bottom:10px;
+}
+.gita-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:10px 0;
+}
+.gita-ref{
+  font-size:15px;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.gita-quote{
+  font-size:20px;
+  color:var(--text);
+  line-height:1.7;
+  position:relative;
+  padding:0 10px;
+  margin-bottom:16px;
+}
+.gita-quote::before{
+  content:'\201C';
+  font-size:48px;
+  color:var(--gold);
+  opacity:.5;
+  position:absolute;
+  left:-8px;top:-10px;
+  font-family:'Playfair Display',serif;
+  line-height:1;
+}
+.gita-quote::after{
+  content:'\201D';
+  font-size:48px;
+  color:var(--gold);
+  opacity:.5;
+  position:absolute;
+  right:-8px;bottom:-20px;
+  font-family:'Playfair Display',serif;
+  line-height:1;
+}
+.gita-img{
+  width:100%;
+  display:block;
+  margin-top:16px;
+  opacity:.85;
+  filter:sepia(40%) contrast(1.1);
+}
+.gita-card::before,
+.gita-card::after{
+  content:'';
+  position:absolute;
+  width:24px;height:24px;
+  border-color:#d4a843;
+  border-style:solid;
+  opacity:0.9;
+}
+.gita-card::before{
+  top:10px;left:10px;
+  border-width:2px 0 0 2px;
+}
+.gita-card::after{
+  bottom:10px;right:10px;
+  border-width:0 2px 2px 0;
+}
+.gc-tr,.gc-bl{
+  position:absolute;
+  width:24px;height:24px;
+  border-color:#d4a843;
+  border-style:solid;
+  opacity:0.9;
+}
+.gc-tr{ top:10px; right:10px; border-width:2px 2px 0 0; }
+.gc-bl{ bottom:10px; left:10px; border-width:0 0 2px 2px; }
 /* ── STATS BAR ── */
 .stats-bar{
   display:flex;gap:0;
@@ -643,6 +744,36 @@ nav{
     </div>
   </div>
   <div class="hero-line"></div>
+  <div class="gita-card">
+  <div class="gita-lotus">
+<svg viewBox="0 0 100 80" width="70" height="56" xmlns="http://www.w3.org/2000/svg">
+  <!-- center petal -->
+  <path d="M50 70 Q35 45 50 10 Q65 45 50 70Z" fill="#d4a843" opacity="0.9"/>
+  <!-- left petals -->
+  <path d="M50 65 Q25 50 15 25 Q38 38 50 65Z" fill="#d4a843" opacity="0.75"/>
+  <path d="M50 62 Q18 55 8 32 Q32 40 50 62Z" fill="#d4a843" opacity="0.5"/>
+  <!-- right petals -->
+  <path d="M50 65 Q75 50 85 25 Q62 38 50 65Z" fill="#d4a843" opacity="0.75"/>
+  <path d="M50 62 Q82 55 92 32 Q68 40 50 62Z" fill="#d4a843" opacity="0.5"/>
+  <!-- water / base -->
+  <ellipse cx="50" cy="72" rx="30" ry="5" fill="#d4a843" opacity="0.2"/>
+  <!-- center glow dot -->
+  <circle cx="50" cy="38" r="5" fill="#fff8e0" opacity="0.8"/>
+  <circle cx="50" cy="38" r="2.5" fill="#d4a843"/>
+</svg>
+</div>
+  <div class="gita-sanskrit">आगमापायिनोऽनित्या:</div>
+  <div class="gita-roman">Āgamāpāyino'nityāḥ</div>
+  <div class="gita-divider"></div>
+  <div class="gita-ref">— Gita 2.14</div>
+  <div class="gita-quote">
+    সবকিছু আসে এবং চলে যায়;কিছুই স্থায়ী নয়।<br>Everything comes and goes;
+nothing is permanent.
+  </div>
+  <img class="gita-img" src="photos/gita_chariot2.png" 
+       onerror="this.style.display='none'" 
+       alt="Gita Chariot">
+</div>
 </section>
 
 <!-- STATS -->
